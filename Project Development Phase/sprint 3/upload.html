@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upload</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div id="content" style="margin-top:2em">
+        <div class="card container-md p-4">
+            <div class="card-body text-md-center h4">
+                Get your number of food orders?
+            </div>
+        
+        <form class="row g-3 needs-validation" action="{{ url_for('predict') }}" method="POST">
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">homepage_featured</label>
+                <select class="form-select" id="homepage_featured" name="homepage_featured">
+                    <option value="">homepage_featured</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">emailer_for_promotion</label>
+                <select class="form-select" id="emailer_for_promotion" name="emailer_for_promotion">
+                    <option value="">emailer_for_promotion</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+        
+            <div class="col-md-4">
+                <label for="formGroupExampleInput" class="form-label">Enter your op_area</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="op_area" placeholder="like op_area=27">
+            </div>
+        
+            <div class="col-md-4">
+                <label for="formGroupExampleInput" class="form-label">Enter your region code</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="region_code"
+                    placeholder="Enter region_code">
+            </div>
+
+            <div class="col-md-4">
+                <label for="formGroupExampleInput" class="form-label">Enter your city code</label>
+                <input class="form-control" type="text" name="city_code" placeholder="Enter city_code"><br><br>       
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">select the food cuisine</label>
+                <select class="form-select" id="cuisine" name="cuisine">
+                    <option value="">Cuisine</option>
+                    <option value="0">Continental</option>
+                    <option value="1">Indian</option>
+                    <option value="2">Italian</option>
+                    <option value="3">Thai</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">select the food category</label>
+                <select class="form-select" id="category" name="category">
+                    <option value="">Category</option>
+                    <option value="0">Beverages</option>
+                    <option value="1">Biryani</option>
+                    <option value="2">Desert</option>
+                    <option value="3">Extras</option>
+                    <option value="4">Fish</option>
+                    <option value="5">Other Snacks</option>
+                    <option value="6">Pasta</option>
+                    <option value="7">Pizza</option>
+                    <option value="8">Rice Bowl</option>
+                    <option value="9">Salad</option>
+                    <option value="10">Sandwich</option>
+                    <option value="11">Seafood</option>
+                    <option value="12">Soup</option>
+                    <option value="13">Starters</option>
+                </select>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="predict" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h1 class="predict">Number of orders: {{ prediction_text }}</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+
+<!-- 
+<div class="col-md-4">
+    <label for="validationCustom01" class="form-label">First name</label>
+    <select class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+
+
+<form action="{{ url_for('predict') }}" method="POST">
+
+    <select class="form-select" id="homepage_featured" name="homepage_featured">
+        <option value="">homepage_featured</option>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select><br><br>
+
+    <select id="emailer_for_promotion" name="emailer_for_promotion">
+        <option value="">emailer_for_promotion</option>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select><br><br>
+
+
+    <input class="form-input" type="text" name="op_area" placeholder="Enter the op_area(27)"><br><br>
+    <select id="cuisine" name="cuisine">
+        <option value="">Cuisine</option>
+        <option value="0">Continental</option>
+        <option value="1">Indian</option>
+        <option value="2">Italian</option>
+        <option value="3">Thai</option>
+
+    </select><br><br>
+    <input class="form-
+    input" type="text" name="city_code" placeholder="Enter city_code"><br><br>
+    <input class="form-
+    input" type="text" name="region_code" placeholder="Enter region_code"><br><br>
+    <select id="category" name="category">
+        <option value="">Category</option>
+        <option value="0">Beverages</option>
+        <option value="1">Biryani</option>
+        <option value="2">Desert</option>
+        <option value="3">Extras</option>
+        <option value="4">Fish</option>
+        <option value="5">Other Snacks</option>
+        <option value="6">Pasta</option>
+        <option value="7">Pizza</option>
+        <option value="8">Rice Bowl</option>
+        <option value="9">Salad</option>
+        <option value="10">Sandwich</option>
+        <option value="11">Seafood</option>
+        <option value="12">Soup</option>
+        <option value="13">Starters</option>
+    </select><br><br>
+
+    <input type="submit" class="btn btn-primary" value="Predict">
+</form>
+-->
